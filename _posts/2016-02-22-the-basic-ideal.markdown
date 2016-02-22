@@ -22,7 +22,7 @@ categories: jekyll update
 
 按照当初我的理解，整个系统应该是一个开放的体系，通过用户的数据摄入数据自主的增长。依托这个数据服务的咨询服务可以发展起来(不少高考志愿咨询都是天价收费，这块的服务是稀缺的)。
 
-但是对于商业这个周期实在是太长了。
+整个服务的周期为一年，对于互联网来说这个周期实在是太长了。
 
 [mathsystem]:http://blog.jobbole.com/94591/
 [passmark]:http://www.cpubenchmark.net/
