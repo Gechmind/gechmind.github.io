@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "谈谈那个想法"
-permalink: "the idea"
+permalink: "theIdea"
 date:   2016-02-22 20:46:23 --0200
 categories: jekyll update
 ---
