@@ -1,11 +1,9 @@
 ---
 layout: page
-title: About
-subtitle: It's Free!
+title: "All about free"
+subtitle: What is free!
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+社会人的属性中包含了如此的束缚，然维其束缚才有使其运行的秩序。一个干瘪的灵魂不值得拥有那么多的自由，于自己不利，于他人不利。
 
-You can find the source code for the Jekyll new theme at: [jekyll-new](https://github.com/jglovier/jekyll-new)
-You can find the source code for Jekyll at [jekyll](https://github.com/jekyll/jekyll)
