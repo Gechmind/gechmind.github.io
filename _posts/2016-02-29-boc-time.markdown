@@ -2,6 +2,7 @@
 layout : post
 title : "墙内的人终于走了出去"
 permalink : "rethink"
+comments : true
 date : 2016-02-29 10:23:14 --0001
 ---
 

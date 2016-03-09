@@ -2,6 +2,7 @@
 layout: post
 title: "谈谈那个想法"
 permalink: "idea"
+comments : true
 date:   2016-02-22 20:46:23 --0200
 categories: jekyll update
 ---

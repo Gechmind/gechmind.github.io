@@ -24,8 +24,8 @@ subtitle: story-history,code-bytecode,ology-technology..
         </h1>
       </header>
 
-      <p>{{ post.content | strip_html | truncatewords: 56 }} <a href="{{ post.url | prepend: site.baseurl }}" title="Permalink to: {{ post.title }}" class="read-more">Read more</a></p>
+      <p>{{ post.excerpt }}<a href="{{ post.url | prepend: site.baseurl }}" title="Permalink to: {{ post.title }}" class="read-more">Read more</a></p>
     </article>
   {% endfor %}
-
+<!--{{ post.content | strip_html | truncatewords: 56 }} -->
 </section>
