@@ -2,6 +2,7 @@
 layout : post
 title : "心尤苦也
 date : 2016-03-14 23:20:27 -0001
+permalink:"hard"
 ---
 
 纸牌屋终于看完了，还有很多点看的仓促。

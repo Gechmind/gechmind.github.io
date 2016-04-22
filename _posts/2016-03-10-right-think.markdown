@@ -2,6 +2,7 @@
 layout : post
 title : "无顾忌思考"
 date : 2016-03-11 20:49:29 -0001
+permalink:"thinking"
 ---
 
 手机计步器显示接近20000步，脚踝明显是受不了了。
