@@ -1,8 +1,8 @@
 ---
-layout: post
-title:"记一次 chrome 调试"
-data: 2016-04-22 23:11:41 -0001
-permalink: "debug"
+layout : post
+title : "记一次 chrome 调试"
+date :  2016-04-22 23:11:41 --0001
+permalink :  "debug"
 ---
 
 前几天发现chrome打开本来便利的后台系统，点击菜单时总是会把内容载入到全局页面，没有了navbar和左侧菜单，调试极其不方便，但是用搜狗浏览器打开确实正常，旁边几个人也不知道怎么回事，只是一直强调他们打开没有问题,不禁觉得很奇怪。下班之后决定一探究竟。
@@ -25,7 +25,7 @@ permalink: "debug"
 <li class="menubar li"><a onclick="" href="menu_url" target="mainFrame" style class="link">二级菜单</a></li>
 {% endhighlight %}
 
-ztree的主要工作是把数据组装成类似上述的html片段，jquery最终把html转换成dom节点，然后插入到事件触发的元素—-即一级菜单之中。通过调试代码可以看到执行appendChild之前，<a>标签中包含的dom片段target属性仍然存在，但是执行完b.appendChild(a)之后，从conlose中可以看到a中target已经不存在了。因此基本确定了target丢失的边界点。
+ztree的主要工作是把数据组装成类似上述的html片段，jquery最终把html转换成dom节点，然后插入到事件触发的元素—-即一级菜单之中。通过调试代码可以看到执行appendChild之前，&lt;a &gt;标签中包含的dom片段target属性仍然存在，但是执行完b.appendChild(a)之后，从conlose中可以看到a中target已经不存在了。因此基本确定了target丢失的边界点。
 
 {% highlight javascript %}
     //a 为生成的dom片段 b为一级菜单元素
@@ -33,19 +33,19 @@ ztree的主要工作是把数据组装成类似上述的html片段，jquery最�
     b.appendChild(a);
 {% endhighlight %}
 
-我首先怀疑，是不是最新的chrome浏览器在插入dom片段时对于<a>的处理有问题，（这个时候我对浏览器的能力变得有点不太信任，被IE的怪异模式蹂躏的后遗症~~）
+我首先怀疑，是不是最新的chrome浏览器在插入dom片段时对于&lt;a &gt;的处理有问题，（这个时候我对浏览器的能力变得有点不太信任，被IE的怪异模式蹂躏的后遗症~~）
 于是我本地写了html页面，通过JS生成上述的dom片段，插入到html中，没有发现异常，target属性没有丢失。
 
-再次我在问题页面，打开开发者工具，通过console解释器直接创建<a>标签，添加target属性，获取content元素，然后把<a>元素append到content中，神奇的事情又发生了，target属性又消失了，创建其他元素添加target属性不会出现。我猜测当前的执行环境对<a>元素执行特殊的操作，首先怀疑的就是bootStrap了..然而搜索代码没有看到特殊处理的片段。
+再次我在问题页面，打开开发者工具，通过console解释器直接创建&lt;a &gt;标签，添加target属性，获取content元素，然后把&lt;a &gt;元素append到content中，神奇的事情又发生了，target属性又消失了，创建其他元素添加target属性不会出现。我猜测当前的执行环境对&lt;a &gt;元素执行特殊的操作，首先怀疑的就是bootStrap了..然而搜索代码没有看到特殊处理的片段。
 
 于是我考虑把网页代码资源全部存储到本地，通过逐步去除依赖的Js文件来定位相关的Js，然而本地打开页面，加载全部Js没有发现任何问题.
 
 看来问题还是得在原始的环境中排查.但是appendChild之后，执行的流程就交给浏览器内核了，无法看到后续的执行过程，调试到这个地方就结束了。考虑js性能工具监控工具Profile能否监控到appendChild之后的js动作呢，试了一下,console执行的JS的来源全部定位到VM中，对当前问题分析没什么帮助。
 
-还有什么办法能看到非调试域中的JS执行情况呢，append之后dom重新绘制的过程肯定触发了一些事件。突然想到以前试验效果都不太好的Break on Attributes Modification，通过console创建包含target属性的<a>标签，打上Attibute断点，不得不说一句Chrome真心强大，在console视图中直接可以打Dom断点！！
+还有什么办法能看到非调试域中的JS执行情况呢，append之后dom重新绘制的过程肯定触发了一些事件。突然想到以前试验效果都不太好的Break on Attributes Modification，通过console创建包含target属性的&lt;a &gt;标签，打上Attibute断点，不得不说一句Chrome真心强大，在console视图中直接可以打Dom断点！！
 然后执行appendChild动作，敲下enter按键，终于捕获到了！！
 
->>kill-evil.js
+>kill-evil.js
 
 holly shit,原来是插件。
 
